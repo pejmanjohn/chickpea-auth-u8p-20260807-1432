@@ -1,0 +1,29 @@
+{
+  "name": "chickpea-auth-u8p-20260807-1432",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "db:migrate": "wrangler d1 migrations apply AUTH_DB --remote",
+    "deploy": "npm run db:migrate && wrangler deploy"
+  },
+  "dependencies": {
+    "better-auth": "1.6.26"
+  },
+  "devDependencies": {
+    "wrangler": "4.118.0"
+  },
+  "cloudflare": {
+    "bindings": {
+      "CHICKPEA_RECOVERY_TOKEN": {
+        "description": "Generate once with `openssl rand -hex 32`, save it in your password manager, and paste the 64-character value here. Chickpea uses it only for initial setup and disaster recovery."
+      },
+      "AUTH_DB": {
+        "description": "Chickpea's Better Auth identity and session database. Cloudflare creates and binds it automatically."
+      },
+      "AUTH_GUARD": {
+        "description": "Sharded password-compute and throttle Durable Objects. Cloudflare creates them automatically."
+      }
+    }
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "chickpea-auth-u8p-20260807-1432",
+  "main": "src/index.ts",
+  "compatibility_date": "2026-08-06",
+  "compatibility_flags": ["nodejs_compat"],
+  "workers_dev": true,
+  "observability": {
+    "enabled": true
+  },
+  "durable_objects": {
+    "bindings": [
+      {
+        "name": "AUTH_GUARD",
+        "class_name": "AuthGuard"
+      }
+    ]
+  },
+  "migrations": [
+    {
+      "tag": "v1",
+      "new_sqlite_classes": ["AuthGuard"]
+    }
+  ],
+  "d1_databases": [
+    {
+      "binding": "AUTH_DB",
+      "database_name": "chickpea-auth-db-u8p-20260807-1432",
+      "database_id": "cd036f4d-046a-4634-bd8e-9c6bc1160a36",
+      "migrations_dir": "migrations/better-auth"
+    }
+  ]
+}
